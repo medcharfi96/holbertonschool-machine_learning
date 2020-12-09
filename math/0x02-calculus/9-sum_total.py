@@ -13,5 +13,5 @@ def summation_i_squared(n):
     elif n == 1:
         return 1
     elif n > 1:
-        x = pow(n, 2) + summation_i_squared(n-1)
-    return(int(x))
+        x = n * n + summation_i_squared(n-1)
+    return int(x)
