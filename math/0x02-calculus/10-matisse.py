@@ -10,9 +10,6 @@ def poly_derivative(poly):
     liste2 = [0]
     if type(poly) is not list or poly is None:
         return None
-    for z in range(len(poly)):
-        if poly[z] is not int or poly[z] is not float:
-            return None
     if len(poly) == 0:
         return None
     elif len(poly) == 1:
