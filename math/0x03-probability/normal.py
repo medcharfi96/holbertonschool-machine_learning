@@ -17,7 +17,7 @@ class Normal:
         """
         self.data = data
         if data is None:
-            if stddev <= 1:
+            if stddev <= 0:
                 raise ValueError("stddev must be a positive value")
             else:
                 self.mean = float(mean)
