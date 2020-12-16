@@ -59,3 +59,25 @@ class Normal:
         return pow(Normal.e, -(pow((x - self.mean), 2) /
                                (2 * (pow(self.stddev, 2)))))/(pow(
                                 (2 * Normal.pi), 1 / 2) * self.stddev)
+
+    def er(self, x):
+        """
+        er
+        :param self:
+        :param x:
+        :return:
+        """
+        pre = (pow(x, 3))/3
+        sec = (pow(x, 5)) / 10
+        thr = (pow(x, 7))/42
+        frth = (pow(x, 9))/216
+        return((2 / (Normal.pi ** 0.5)) * (x - pre + sec - thr + frth))
+
+    def cdf(self, x):
+        """
+        forme distribution cumulative
+        :param x:
+        """
+        z = (self.z_score(x))/(pow(2, 1/2))
+        res = 0.5*(1+self.er(z))
+        return(res)
