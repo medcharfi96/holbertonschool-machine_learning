@@ -53,7 +53,7 @@ class Binomial:
         description f jbal
         :param k: int
         """
-        if int(k):
+        if int(k)>0:
             k = int(k)
         else:
             return 0
