@@ -38,3 +38,28 @@ class Binomial:
                 test += pow((i - moy), 2)
                 self.n = int(round(moy / (1 - ((test / len(data)) / moy))))
                 self.p = float(moy / self.n)
+
+    def fac(nika):
+        """
+        fact
+        """
+        res = 1
+        for x in range(1, nika + 1):
+            res = x * res
+        return(res)
+
+    def pmf(self, k):
+        """
+        description f jbal
+        :param k: int
+        """
+        if int(k):
+            k = int(k)
+        else:
+            return 0
+        zab = self.n - k
+        zab2 = 1 - self.p
+        DENOM = (pow(self.p, k) * pow(zab2, zab))
+        fouk = (Binomial.fac(self.n)) / ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
+        return fouk/DENOM
+
