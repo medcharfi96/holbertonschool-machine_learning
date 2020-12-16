@@ -34,5 +34,15 @@ class Normal:
             self.stddev = ((test/(len(data)))**(0.5))
 
     def z_score(self, x):
-        """ des """
-        return (x - self.mean)/self.stddev
+        """
+        funcd
+        """
+        return ((x - self.mean)/self.stddev)
+
+    def x_value(self, z):
+        """
+        function desc
+        :param z:
+        :return:
+        """
+        return (self.mean + (z * self.stddev))
