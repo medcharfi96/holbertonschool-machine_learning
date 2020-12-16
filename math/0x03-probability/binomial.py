@@ -57,9 +57,6 @@ class Binomial:
             k = int(k)
         else:
             return 0
-        zab = self.n - k
-        zab2 = 1 - self.p
-        DENOM = (pow(self.p, k) * pow(zab2, zab))
         fok = (Binomial.fac(self.n)) /\
               ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
-        return fok * DENOM
+        return (fok * (self.p ** k) * ((1 - self.p) ** (self.n - k)))
