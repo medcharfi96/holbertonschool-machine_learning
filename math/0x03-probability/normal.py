@@ -32,3 +32,10 @@ class Normal:
             for i in data:
                 dt += pow((i - self.mean), 2)
             self.stddev = ((dt/(len(data)))**(0.5))
+
+    def z_score(self, x):
+        """
+        fuction desc
+        :param x: int
+        """
+        return ((x - self.mean)/self.stddev)
