@@ -23,14 +23,14 @@ class Binomial:
             if n <= 0:
                 raise ValueError("n must be a positive value")
             elif p <= 0 or p >= 1:
-                raise ValueError(" p must be greater than 0 and less than 1")
+                raise ValueError("p must be greater than 0 and less than 1")
             else:
                 self.n = int(n)
                 self.p = float(p)
         else:
             if type(data) is not list:
                 raise TypeError("data must be a list")
-            elif len(data) <= 2:
+            elif len(data) < 2:
                 raise ValueError("data must contain multiple values")
             test = 0
             moy = float(sum(data)/len(data))
