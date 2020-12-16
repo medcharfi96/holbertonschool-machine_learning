@@ -56,7 +56,7 @@ class Binomial:
         if int(k) > 0:
             k = int(k)
         else:
-            return 0
+            return(0)
         fok = (Binomial.fac(self.n)) /\
               ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
-        return (fok * (self.p ** k) * ((1 - self.p) ** (self.n - k)))
+        return fok * (self.p ** k) * ((1 - self.p) ** (self.n - k))
