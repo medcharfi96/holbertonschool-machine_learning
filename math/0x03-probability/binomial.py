@@ -60,6 +60,6 @@ class Binomial:
         zab = self.n - k
         zab2 = 1 - self.p
         DENOM = (pow(self.p, k) * pow(zab2, zab))
-        fouk = (Binomial.fac(self.n)) / ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
-        return fouk/DENOM
-
+        fok = (Binomial.fac(self.n)) /\
+              ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
+        return fok * DENOM
