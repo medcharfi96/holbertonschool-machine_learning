@@ -60,3 +60,16 @@ class Binomial:
         fok = (Binomial.fac(self.n)) /\
               ((Binomial.fac(k)) * (Binomial.fac(self.n - k)))
         return fok * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+
+    def cdf(self, k):
+        """
+        des
+        """
+        if int(k) < 0:
+            return 0
+        else:
+            k = int(k)
+        zab = 0
+        for i in range(0, k + 1):
+            zab = zab + self.pmf(i)
+        return(zab)
