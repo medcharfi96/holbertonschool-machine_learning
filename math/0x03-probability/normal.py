@@ -8,6 +8,9 @@ class Normal:
     """
     class description
     """
+    e = 2.7182818285
+    pi = 3.1415926536
+
     def __init__(self, data=None, mean=0., stddev=1.):
         """
         function description l3asba ya wideeed w nik lsbeh
@@ -46,3 +49,13 @@ class Normal:
         :return:
         """
         return (self.mean + (z * self.stddev))
+
+    def pdf(self, x):
+        """
+        function desc
+        :param x: int or float
+        :return: the pdf result
+        """
+        return pow(Normal.e, -(pow((x - self.mean), 2) /
+                               (2 * (pow(self.stddev, 2)))))/(pow(
+                                (2 * Normal.pi), 1 / 2) * self.stddev)
