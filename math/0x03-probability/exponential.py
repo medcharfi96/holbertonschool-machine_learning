@@ -37,3 +37,15 @@ class Exponential:
             return 0
         else:
             return pow(e, (-self.lambtha * x)) * self.lambtha
+
+    def cdf(self, x):
+        """
+        function decription
+        :param x: int
+        :return: int
+        """
+        e = 2.7182818285
+        if x < 0:
+            return 0
+        else:
+            return 1 - pow(e, (-self.lambtha * x))
