@@ -27,15 +27,15 @@ class Normal:
                 raise TypeError("data must be a list")
             elif len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            dt = 0
+            test = 0
             self.mean = float(sum(data)/len(data))
             for i in data:
-                dt += pow((i - self.mean), 2)
-            self.stddev = ((dt/(len(data)))**(0.5))
+                test += pow((i - self.mean), 2)
+            self.stddev = ((test/(len(data)))**(0.5))
 
     def z_score(self, x):
         """
         fuction desc
         :param x: int
         """
-        return (x - self.mean)/self.stddev
+        return (x - self.mean) / self.stddev
