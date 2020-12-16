@@ -8,9 +8,6 @@ class Exponential:
     """
     class description
     """
-
-    e = 2.7182818285
-
     def __init__(self, data=None, lambtha=1.):
         """
         function description
@@ -28,3 +25,15 @@ class Exponential:
             elif len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(len(data) / sum(data))
+
+    def pdf(self, x):
+        """
+        function decription
+        :param x: int
+        :return: int
+        """
+        e = 2.7182818285
+        if x < 0:
+            return 0
+        else:
+            return pow(e, (-self.lambtha * x)) * self.lambtha
