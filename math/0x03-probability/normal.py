@@ -38,4 +38,4 @@ class Normal:
         fuction desc
         :param x: int
         """
-        return ((x - self.mean)/self.stddev)
+        return (x - self.mean)/self.stddev
