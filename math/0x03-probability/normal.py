@@ -23,10 +23,10 @@ class Normal:
                 self.mean = float(mean)
                 self.stddev = float(stddev)
         else:
-            if len(data) < 2:
-                raise ValueError("data must contain multiple values")
-            elif type(data) is not list:
+            if type(data) is not list:
                 raise TypeError("data must be a list")
+            elif len(data) < 2:
+                raise ValueError("data must contain multiple values")
             dt = 0
             self.mean = float(sum(data)/len(data))
             for i in data:
