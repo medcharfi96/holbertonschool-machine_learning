@@ -43,3 +43,31 @@ class Poisson:
         for i in range(1, k + 1):
             nb = nb * i
         return(((pow(e, -self.lambtha)) * (pow(self.lambtha, k))) / nb)
+
+    def fac(self, k):
+        """
+        function facr
+        :param k: int
+        :return:
+        """
+        nb = 1
+        for i in range(1, k + 1):
+            nb = nb * i
+        return nb
+
+    def cdf(self, k):
+        """
+        function description
+        :param k: int
+        :return: int
+        """
+        e = 2.7182818285
+        if int(k) > 0:
+            k = int(k)
+        else:
+            return(0)
+        res = 0
+        for i in range(0, k + 1):
+            v = pow(self.lambtha, i)
+            res += ((pow(e, -self.lambtha)*v)/self.fac(i))
+        return res
