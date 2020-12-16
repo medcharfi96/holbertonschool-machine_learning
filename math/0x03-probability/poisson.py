@@ -38,7 +38,7 @@ class Poisson:
         if int(k) > 0:
             k = int(k)
         else:
-            k = 0
+            return(0)
         nb = 1
         for i in range(1, k + 1):
             nb = nb * i
