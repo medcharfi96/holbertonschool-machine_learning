@@ -54,6 +54,7 @@ class Neuron():
         :param X: int
         :return:
         """
+        nm , m = np.shape(X)
         v = np.matmul(self.__W, X, None) + self.__b
         res = 1 / (1 + np.exp(-v))
         self.__A = res
