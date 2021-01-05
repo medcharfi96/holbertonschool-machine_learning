@@ -126,13 +126,15 @@ class NeuralNetwork():
         :param alpha: taux dapprentissage
         :return:
         """
-        m = Y.shape[1]
-        db1 = np.sum(A1-Y) / m
-        dW1 = np.matmul(X, (A1 - Y).T, None)/m
-        self.__W1 = self.__W1 - (alpha * dW1).T
-        self.__b1 = self.__b1 - alpha * db1
-
-        db2 = np.sum(A2-Y) / m
-        dW2 = np.matmul(A1, (A2 - Y).T, None)/m
-        self.__W2 = self.__W2 - (alpha * dW2).T
-        self.__b2 = self.__b2 - alpha * db2
+        m = len(X[0])
+        dz2 = A2 - Y
+        dw2 = np.matmul(dz2, A1.T) * 1 / m
+        db2 = np.sum(dz2, axis=1, keepdims=True) * 1 / m
+        dA1 = A1 * (1 - A1)
+        dz1 = np.matmul(self.__W2.T, dz2) * dA1
+        dw1 = np.matmul(dz1, X.T) * 1 / m
+        db1 = np.sum(dz1, axis=1, keepdims=True) * 1 / m
+        self.__W2 = self.__W2 - dw2 * alpha
+        self.__b2 = self.__b2 - db2 * alpha
+        self.__W1 = self.__W1 - dw1 * alpha
+        self.__b1 = self.__b1 - db1 * alpha
