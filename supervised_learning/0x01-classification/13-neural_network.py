@@ -131,15 +131,14 @@ class NeuralNetwork():
         for the first arg A1
         """
         deriv = A1 * (1 - A1)
-        dz1 = np.matmul(self.__W2.T, A2 - Y)
-        db1 = np.sum(dz1 * deriv, axis=1) / m
-        dW1 = np.matmul(X, (dz1 * deriv).T, None)/m
+        var1 = np.matmul(self.__W2.T, A2 - Y)
+        db1 = np.sum(var1 * deriv, axis=1) / m
+        dW1 = np.matmul(X, (var1 * deriv).T, None)/m
         """
         for A2  mean for the second one argument
         """
         db2 = np.sum(A2-Y, axis=1) / m
         dW2 = np.matmul(A1, (A2 - Y).T, None)/m
-
         """
         reinisialisation des variable
         """
