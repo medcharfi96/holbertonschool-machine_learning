@@ -26,8 +26,8 @@ class DeepNeuralNetwork:
         for i in range(len(layers)):
             if (layers[i] <= 0) or not isinstance(layers[i], int):
                 raise TypeError("layers must be a list of positive integers")
-            wb = "b{}".format(i + 1)
-            wK = "W{}".format(i + 1)
+            wb = "b{}" + str(i + 1)
+            wK = "W{}" + str(i + 1)
             if i > 0:
                 fr = np.sqrt(2 / layers[i - 1])
                 self.weights[wK] = np.random.randn(layers[i],
