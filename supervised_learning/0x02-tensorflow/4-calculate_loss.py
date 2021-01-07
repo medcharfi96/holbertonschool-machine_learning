@@ -9,6 +9,6 @@ def calculate_loss(y, y_pred):
     :param y: espace res
     :param y_pred: le estim
     """
-    loss = tf.losses.softmax_cross_entropy(y, logits=y_pred, weights=1.0,
-                                           scope=None)
-    return (loss)
+    zok_secretaire = tf.losses.softmax_cross_entropy(y, logits=y_pred,
+                                                     weights=1.0, scope=None)
+    return (zok_secretaire)
