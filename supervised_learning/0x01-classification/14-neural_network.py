@@ -88,13 +88,13 @@ class NeuralNetwork:
         :param X: ndarray
         :return:
         """
-        v1 = np.matmul(self.__W1, X, None) + self.__b1
+        v1 = np.matmul(self.__W1, X) + self.__b1
         res = 1 / (1 + np.exp(-v1))
         self.__A1 = res
         v2 = np.matmul(self.__W2, res, None) + self.__b2
         res2 = 1 / (1 + np.exp(-v2))
         self.__A2 = res2
-        return (self.__A1, self.__A2)
+        return self.__A1, self.__A2
 
     def cost(self, Y, A):
         """
@@ -130,7 +130,7 @@ class NeuralNetwork:
         :param alpha: taux dapprentissage
         :return:
         """
-        m = Y.shape[1]
+        nx, m = Y.shape
         """
         for the first arg A1
         """
@@ -139,12 +139,12 @@ class NeuralNetwork:
         dz1 = np.matmul(self.__W2.T, dz2) * dA1
         deriv = A1 * (1 - A1)
         var1 = np.matmul(self.__W2.T, A2 - Y) * deriv
-        db1 = np.sum(var1 * deriv, axis=1) / m
+        db1 = np.sum(var1 * deriv, axis=1, keepdims=True) / m
         dw1 = np.matmul(dz1, X.T) * 1 / m
         """
         for A2  mean for the second one argument
         """
-        db2 = np.sum(A2 - Y, axis=1) / m
+        db2 = np.sum(A2 - Y, axis=1, keepdims=True) / m
         dW2 = np.matmul(A1, (A2 - Y).T, None) / m
         """
         reinisialisation des variable
