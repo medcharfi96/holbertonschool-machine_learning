@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
 """
-Class NeuralNetwork
+classe description
 """
-
-
 import numpy as np
 
 
-class NeuralNetwork:
+class NeuralNetwork():
     """
-    Class NeuralNetwork that defines a neural network with one hidden layer
-    performing binary classification
+    classe neurone network
     """
-
     def __init__(self, nx, nodes):
         """
         constructeur parametré
@@ -88,13 +84,13 @@ class NeuralNetwork:
         :param X: ndarray
         :return:
         """
-        v1 = np.matmul(self.__W1, X) + self.__b1
+        v1 = np.matmul(self.__W1, X, None) + self.__b1
         res = 1 / (1 + np.exp(-v1))
         self.__A1 = res
         v2 = np.matmul(self.__W2, res, None) + self.__b2
         res2 = 1 / (1 + np.exp(-v2))
         self.__A2 = res2
-        return self.__A1, self.__A2
+        return (self.__A1, self.__A2)
 
     def cost(self, Y, A):
         """
@@ -105,7 +101,7 @@ class NeuralNetwork:
         """
         m = Y.shape[1]
         za = 1.0000001 - A
-        cost = (np.sum(Y * np.log(A) + (1 - Y) * np.log(za))) / m
+        cost = (np.sum(Y * np.log(A) + (1 - Y) * np.log(za)))/m
         return (-1 * cost)
 
     def evaluate(self, X, Y):
@@ -130,44 +126,39 @@ class NeuralNetwork:
         :param alpha: taux dapprentissage
         :return:
         """
-        nx, m = Y.shape
+        m = Y.shape[1]
         """
         for the first arg A1
         """
-        dA1 = A1 * (1 - A1)
-        dz2 = A2 - Y
-        dz1 = np.matmul(self.__W2.T, dz2) * dA1
         deriv = A1 * (1 - A1)
-        var1 = np.matmul(self.__W2.T, A2 - Y) * deriv
+        var1 = np.matmul(self.__W2.T, A2 - Y)
         db1 = np.sum(var1 * deriv, axis=1, keepdims=True) / m
-        dw1 = np.matmul(dz1, X.T) * 1 / m
+        dW1 = np.matmul(X, (var1 * deriv).T, None)/m
         """
         for A2  mean for the second one argument
         """
-        db2 = np.sum(A2 - Y, axis=1, keepdims=True) / m
-        dW2 = np.matmul(A1, (A2 - Y).T, None) / m
+        db2 = np.sum(A2-Y, axis=1, keepdims=True) / m
+        dW2 = np.matmul(A1, (A2 - Y).T, None)/m
         """
         reinisialisation des variable
         """
-        self.__W2 = self.__W2 - dW2 * alpha
-        self.__b2 = self.__b2 - db2 * alpha
-        self.__W1 = self.__W1 - dw1 * alpha
-        self.__b1 = self.__b1 - db1 * alpha
+        self.__W1 = self.__W1 - (alpha * dW1).T
+        self.__b1 = self.__b1 - alpha * db1
+        self.__W2 = self.__W2 - (alpha * dW2).T
+        self.__b2 = self.__b2 - alpha * db2
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """
         des
         """
-        if type(iterations) is not int:
+        if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
         if iterations < 0:
             raise ValueError("iterations must be a positive integer")
-
-        if type(alpha) is not float:
+        if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
-
         for i in range(iterations):
             self.__A1, self.__A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
