@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+""" task 2 """
+
+
+def forward_prop(x, layer_sizes=[], activations=[]):
+    """
+    fonction de propagation
+    :param x: int
+    :param activation:list
+    :return:
+    """
+    create = __import__('1-create_layer').create_layer
+    hmed = create(x, layer_sizes[0], activations[0])
+    for i in range(len(layer_sizes)):
+        hmed = create(hmed, layer_sizes[i], activations[i])
+
+    return (hmed)
