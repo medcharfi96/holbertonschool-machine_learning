@@ -33,7 +33,7 @@ class DeepNeuralNetwork:
             if i == 0:
                 self.weights[wK] = np.random.randn(layers[i], nx) \
                                    * np.sqrt(2 / nx)
-                self.weights[wb] = np.zeros((layers[i], 1))
+                self.weights[wb] = np.zeros((layers[0], 1))
 
             else:
                 self.weights[wK] = np.random.randn(layers[i], layers[i - 1]) \
