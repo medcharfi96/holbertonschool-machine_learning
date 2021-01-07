@@ -65,7 +65,8 @@ class DeepNeuralNetwork:
             wk = "W" + str(i+1)
             wa = "A" + str(i)
             wa2 = "A" + str(i+1)
-            v = np.matmul(self.__weights[wk], self.__cache[wa]) + self.__weights[wb]
+            v = np.matmul(self.__weights[wk], self.__cache[wa]) + \
+                self.__weights[wb]
             res = 1 / (1 + np.exp(-v))
             self.__cache[wa2] = res
         return (self.__cache[wa2], self.__cache)
