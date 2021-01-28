@@ -29,15 +29,15 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         pnd_h = padding[0]
         pnd_w = padding[1]
 
-    hfinal = int(((tof_h - krnl_h + (2 * pnd_h)) / sh) + 1)
-    wfinal = int(((tof_w - krnl_w + (2 * pnd_w)) / sw) + 1)
-    IMG_ret = np.zeros((m, hfinal, wfinal))
+    res_h = int(((tof_h - krnl_h + (2 * pnd_h)) / sh) + 1)
+    res_w = int(((tof_w - krnl_w + (2 * pnd_w)) / sw) + 1)
+    IMG_ret = np.zeros((m, res_h, res_w))
 
     images = np.pad(images, [(0, 0), (pnd_h, pnd_h),
                              (pnd_w, pnd_w), (0, 0)], 'constant')
 
-    for fi in range(hfinal):
-        for zi in range(wfinal):
+    for fi in range(res_h):
+        for zi in range(res_w):
             IMG_ret[:, fi, zi] = np.sum(kernel * (images[:,
                                                   fi*sh:fi*sh + krnl_h,
                                                   zi*sw:zi*sw + krnl_w]),
