@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" convolve function """
+""" task 2 """
 import numpy as np
 
 
