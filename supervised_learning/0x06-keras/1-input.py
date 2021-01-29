@@ -5,7 +5,6 @@ import tensorflow.keras as K
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """
-
     :param nx:
     :param layers:
     :param activations:
@@ -19,11 +18,10 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
                         kernel_regularizer=reg)(za)
 
     for count in range(1, len(layers)):
+        va = K.layers.Dropout(1-keep_prob)(va)
         va = K.layers.Dense(layers[count],
                             activation=activations[count],
                             kernel_regularizer=reg,
                             name='dense_'+str(count))(va)
-        if count < len(layers) - 1:
-            va = K.layers.Dropout(1-keep_prob)(va)
     model = K.Model(inputs=za, outputs=va)
     return model
