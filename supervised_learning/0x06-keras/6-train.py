@@ -20,11 +20,10 @@ def train_model(network, data, labels, batch_size, epochs,
     :param shuffle:
     """
     test = []
-    if validation_data is True:
-        if early_stopping is True:
-            early_stop = K.callbacks.EarlyStopping(monitor='val_loss',
-                                                   patience=patience)
-            test.append(early_stop)
+    if early_stopping is True:
+        wakaf = K.callbacks.EarlyStopping(monitor='val_loss',
+                                          patience=patience)
+        test.append(wakaf)
     history = network.fit(x=data, y=labels,
                           callbacks=test,
                           epochs=epochs,
