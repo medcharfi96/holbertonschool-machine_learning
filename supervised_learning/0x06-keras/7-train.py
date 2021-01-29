@@ -3,10 +3,11 @@
 import tensorflow.keras as K
 
 
-def train_model(network, data, labels, batch_size, epochs,
-                validation_data=None, early_stopping=False, patience=0,
-                learning_rate_decay=False, alpha=0.1, decay_rate=1,
-                verbose=True, shuffle=False):
+def train_model(network, data, labels, batch_size,
+                epochs, validation_data=None,
+                early_stopping=False, patience=0,
+                learning_rate_decay=False, alpha=0.1,
+                decay_rate=1, verbose=True, shuffle=False):
     """
     zeb
     :param network:
@@ -22,20 +23,18 @@ def train_model(network, data, labels, batch_size, epochs,
     """
     def scheduler(epoch):
         """
-        calcule de taux dapprentissage
+        ay 3asba
         :param epoch:
         """
-        laterature = alpha * (1 + decay_rate * epoch)
-        return laterature
-
+        return alpha / (1 + decay_rate * epoch)
     test = []
-    if early_stopping and validation_data:
+    if early_stopping is True:
         wakaf = K.callbacks.EarlyStopping(monitor='val_loss',
                                           patience=patience)
         test.append(wakaf)
-    if (learning_rate_decay and validation_data) is True:
-        wakaf1 = K.callbacks.LearningRateScheduler(scheduler, verbose=1)
-        test.append(wakaf1)
+    if learning_rate_decay and validation_data:
+        test.append(K.callbacks.LearningRateScheduler(scheduler,
+                                                      verbose=1))
     history = network.fit(x=data, y=labels,
                           callbacks=test,
                           epochs=epochs,
