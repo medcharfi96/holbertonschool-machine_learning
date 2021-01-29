@@ -32,7 +32,7 @@ def train_model(network, data, labels, batch_size,
         wakaf = K.callbacks.EarlyStopping(monitor='val_loss',
                                           patience=patience)
         test.append(wakaf)
-    if (learning_rate_decay and validation_data) is True:
+    if learning_rate_decay and validation_data:
         zab = K.callbacks.LearningRateScheduler(scheduler,
                                                 verbose=1)
         test.append(zab)
