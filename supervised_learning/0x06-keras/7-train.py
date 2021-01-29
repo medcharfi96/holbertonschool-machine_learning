@@ -29,13 +29,13 @@ def train_model(network, data, labels, batch_size, epochs,
         return laterature
 
     test = []
-    if (early_stopping and validation_data) is True:
+    if early_stopping is True:
         wakaf = K.callbacks.EarlyStopping(monitor='val_loss',
                                           patience=patience)
         test.append(wakaf)
     if learning_rate_decay is True:
-        wakaf = K.callbacks.LearningRateScheduler(scheduler, verbose=1)
-        test.append(wakaf)
+        wakaf1 = K.callbacks.LearningRateScheduler(scheduler, verbose=1)
+        test.append(wakaf1)
     history = network.fit(x=data, y=labels,
                           callbacks=test,
                           epochs=epochs,
