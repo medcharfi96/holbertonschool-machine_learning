@@ -40,8 +40,8 @@ def train_model(network, data, labels,
         zab = K.callbacks.LearningRateScheduler(scheduler,
                                                 verbose=1)
         test.append(zab)
-    if save_best:
-        zbib = K.callbacks.ModelCheckpoint(filepath)
+    if save_best and validation_data:
+        zbib = K.callbacks.ModelCheckpoint(filepath, save_best_only=True)
         test.append(zbib)
     history = network.fit(x=data, y=labels,
                           callbacks=test,
