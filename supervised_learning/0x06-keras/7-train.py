@@ -34,7 +34,7 @@ def train_model(network, data, labels, batch_size, epochs,
                                           patience=patience)
         test.append(wakaf)
     if (learning_rate_decay and validation_data) is True:
-        wakaf1 = K.callbacks.LearningRateScheduler(scheduler, verbose=1)
+        wakaf1 = K.callbacks.LearningRateScheduler(scheduler(epochs), verbose=1)
         test.append(wakaf1)
     history = network.fit(x=data, y=labels,
                           callbacks=test,
