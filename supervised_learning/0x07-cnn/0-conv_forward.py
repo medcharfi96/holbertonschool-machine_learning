@@ -24,10 +24,10 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     nc_krnl = W.shape[3]
     str_h, str_w = stride
     if padding == "same":
-        ph = int(((h_prev - 1) * str_h + h_krnl - h_prev) / 2) + \
-             (h_krnl % 2 == 0)
-        pw = int(((w_prev - 1) * str_w + w_krnl - w_prev) / 2) + \
-            (w_krnl % 2 == 0)
+        ph = int(((h_prev - 1) * str_h + h_krnl - h_prev) / 2+ \
+             (h_krnl % 2 == 0))
+        pw = int(((w_prev - 1) * str_w + w_krnl - w_prev) / 2 + \
+            (w_krnl % 2 == 0))
     if padding == "valid":
         ph = 0
         pw = 0
