@@ -29,8 +29,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     if padding == "valid":
         ph = 0
         pw = 0
-    final_h = int(((h_prev - h_krnl + (2 * ph)) / str_h) + h_krnl % 2 == 0)
-    final_w = int(((w_prev - w_krnl + (2 * pw)) / str_w) + h_krnl % 2 == 0)
+    final_h = int(((h_prev - h_krnl + (2 * ph)) / str_h) + (h_krnl % 2 == 0))
+    final_w = int(((w_prev - w_krnl + (2 * pw)) / str_w) + (h_krnl % 2 == 0))
     H = np.zeros((m_prev, final_h, final_w, nc_krnl))
     img = np.pad(A_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)), mode='constant')
 
