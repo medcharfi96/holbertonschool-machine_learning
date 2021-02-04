@@ -38,8 +38,10 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
         for j in range(final_w):
             for re in range(nc_krnl):
                 H[:, i, j, re] = np.sum(np.multiply(img[:,
-                                                    i*str_h:h_krnl+(i*str_h),
-                                                    j*str_w:w_krnl+(j*str_w)],
+                                                    (i*str_h):h_krnl +
+                                                              (i*str_h),
+                                                    (j*str_w):w_krnl +
+                                                              (j*str_w)],
                                                     W[:, :, :, re]),
                                         axis=(1, 2, 3))
     return activation(H + b)
