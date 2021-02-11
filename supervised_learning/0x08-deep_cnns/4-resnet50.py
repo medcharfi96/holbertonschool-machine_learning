@@ -42,5 +42,5 @@ def resnet50():
     YY = K.layers.Dense(units=1000,
                         activation='softmax',
                         kernel_initializer=krnl)(moyenne)
-    model = K.models.Model(inputs=XX, outputs=YY)
-    return model
+    final = K.models.Model(inputs=XX, outputs=YY)
+    return final
