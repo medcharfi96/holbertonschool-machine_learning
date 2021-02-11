@@ -14,7 +14,7 @@ def identity_block(A_prev, filters):
     F12 = filters[2]
     krnl = K.initializers.he_normal(seed=None)
 
-    C1 = K.layers.Conv2D(filters=F11, kernel_size=2,
+    C1 = K.layers.Conv2D(filters=F11, kernel_size=(1, 1),
                          padding='same',
                          kernel_initializer=krnl)(A_prev)
 
@@ -22,7 +22,7 @@ def identity_block(A_prev, filters):
     AV_C1 = K.layers.Activation('relu')(NM1)
 
     C2 = K.layers.Conv2D(filters=F3,
-                         kernel_size=2,
+                         kernel_size=(3, 3),
                          padding='same',
                          kernel_initializer=krnl)(AV_C1)
 
@@ -30,7 +30,7 @@ def identity_block(A_prev, filters):
     AV_C2 = K.layers.Activation('relu')(NM2)
 
     C3 = K.layers.Conv2D(filters=F12,
-                         kernel_size=2,
+                         kernel_size=(1, 1),
                          padding='same',
                          kernel_initializer=krnl)(AV_C2)
 
