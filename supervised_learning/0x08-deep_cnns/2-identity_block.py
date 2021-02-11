@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ task 2 """
-import tensorflow._api.v1.keras as K
+import tensorflow.keras as K
 
 
 def identity_block(A_prev, filters):
