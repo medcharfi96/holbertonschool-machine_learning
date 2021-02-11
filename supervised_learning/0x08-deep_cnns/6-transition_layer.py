@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ task 6"""
 import tensorflow.keras as K
-from scipy.special.cython_special import ker
 
 
 def transition_layer(X, nb_filters, compression):
