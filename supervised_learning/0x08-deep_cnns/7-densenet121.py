@@ -34,7 +34,7 @@ def densenet121(growth_rate=32, compression=1.0):
     C8, n_f8 = dense_block(C7, NB_fil7, growth_rate, 16)
 
     moyenne = K.layers.AveragePooling2D(pool_size=(7, 7),
-                                        strides=(11),
+                                        strides=(1, 1),
                                         padding='same')(C8)
     YY = K.layers.Dense(1000, activation='softmax',
                         kernel_initializer=krnl)(moyenne)
