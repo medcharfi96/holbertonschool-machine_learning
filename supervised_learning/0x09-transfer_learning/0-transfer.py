@@ -2,7 +2,7 @@
 """task 0"""
 
 
-import tensorflow._api.v1.keras as K
+import tensorflow.keras as K
 import tensorflow as tf
 
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     (x_tr, y_tr), (XX, YY) = K.datasets.cifar10.load_data()
     x_tr, y_tr = preprocess_data(x_tr, y_tr)
     XX, YY = preprocess_data(XX, YY)
-    entree = K.Input(shape=(32, 32, 3))
+    entree = K.Input(shape=(224, 224, 3))
     fnl = K.applications.ResNet50(include_top=False,
                                   weights="imagenet",
                                   input_tensor=entree,
