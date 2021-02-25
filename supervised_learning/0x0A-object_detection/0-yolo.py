@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ task 0 """
-import tensorflow._api.v1.keras as K
+import tensorflow.keras as K
 
 
 class Yolo():
@@ -20,7 +20,7 @@ class Yolo():
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
-        self.class_names = []
         with open(classes_path, 'r') as fichier:
-            for l in fichier.readlines():
-                self.class_names.append([l.strip()])
+            for l in fichier:
+                z = l.strip()
+                self.class_names = [z]
