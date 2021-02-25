@@ -20,7 +20,8 @@ class Yolo():
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
+        self.class_names = []
         with open(classes_path, 'r') as fichier:
             for l in fichier:
                 z = l.strip()
-                self.class_names = [z]
+                self.class_names.append(z)
