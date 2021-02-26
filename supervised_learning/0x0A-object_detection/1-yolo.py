@@ -27,6 +27,10 @@ class Yolo():
                 z = l.strip()
                 self.class_names = [z]
 
+    def sigmoid(self, X):
+        """ sigmoid function"""
+        return (1 / (1 + np.exp(-X)))
+
     def process_outputs(self, outputs, image_size):
         """
         des
@@ -38,34 +42,29 @@ class Yolo():
         box_confidences = []
         box_class_probs = []
         for zz in outputs:
-
             boxes.append(zz[..., 0:4])
 
-            box_confidences.append(tf.math.sigmoid(zz[..., 4, np.newaxis]))
+            box_confidences.append(self.sigmoid(zz[..., 4, np.newaxis]))
 
-            box_class_probs.append(tf.math.sigmoid(zz[..., 5:]))
-
-        for i, bx in enumerate(boxes):
-            grid_height, grid_width, anchor_boxes, _ = bx.shape
-
-            c = np.zeros((grid_height, grid_width, anchor_boxes), dtype=int)
-
-            Tx = (bx[..., 0])
-            Ty = (bx[..., 1])
-            Tw = (bx[..., 2])
-            Th = (bx[..., 3])
-
-            indx_y = np.arange(grid_height).reshape(grid_height, 1, 1)
-            Cy = c + indx_y
-
-            indx_x = np.arange(grid_width).reshape(1, grid_width, 1)
-            Cx = c + indx_x
-
-            bx = (tf.math.sigmoid(Tx) + Cx) / grid_width
-            by = (tf.math.sigmoid(Ty) + Cy) / grid_height
+            box_class_probs.append(self.sigmoid((zz[..., 5:])))
+        for i, box in enumerate(boxes):
+            grid_h, grid_w, anchor_boxes, _ = box.shape
+            Cy = np.indices((grid_h, grid_w, anchor_boxes))[0]
+            Cx = np.indices((grid_h, grid_w, anchor_boxes))[1]
+            Tx = box[..., 0]
+            Ty = box[..., 1]
+            Tw = box[..., 2]
+            Th = box[..., 3]
 
             pw = self.anchors[i, :, 0]
             ph = self.anchors[i, :, 1]
+
+            bbx = (self.sigmoid(Tx) + Cx)
+            bby = (self.sigmoid(Ty) + Cy)
+
+            bx = bbx / grid_w
+            by = bby / grid_h
+
             bw = pw * np.exp(Tw)
             bw = bw / self.model.input.shape[1].value
             bh = ph * np.exp(Th)
@@ -76,9 +75,13 @@ class Yolo():
             y1 = by - bh / 2
             y2 = y1 + bh
 
-            bx[..., :0] = x1 * img_width
-            bx[..., 1:1] = y1 * img_height
-            bx[..., 2:2] = x2 * img_width
-            bx[..., 3:3] = y2 * img_height
+            x11 = x1 * img_width
+            x22 = x2 * img_width
+            y11 = y1 * img_height
+            y22 = y2 * img_height
 
+            box[..., 0] = x11
+            box[..., 1] = y11
+            box[..., 2] = x22
+            box[..., 3] = y22
         return boxes, box_confidences, box_class_probs
