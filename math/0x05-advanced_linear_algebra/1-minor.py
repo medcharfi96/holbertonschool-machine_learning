@@ -71,11 +71,11 @@ def minor(matrix):
     :param matrix:
     :return:
     """
-    if len(matrix) == 1:
-        return [[1]]
+
     if matrix == []:
         raise TypeError("matrix must be a list of lists")
-    if type(matrix) is not list or len(matrix) == 0:
+    if type(matrix) is not list or len(matrix) == 0 or \
+            type(matrix) is not list:
         raise TypeError("matrix must be a list of lists")
     if len(matrix[0]) != len(matrix):
         raise ValueError("matrix must be a non-empty square matrix")
@@ -84,6 +84,8 @@ def minor(matrix):
             raise TypeError("matrix must be a list of lists")
         elif len(i) != len(matrix):
             raise ValueError("matrix must be a non-empty square matrix")
+    if len(matrix) == 1:
+        return [[1]]
     retour = []
     for i in range(len(matrix)):
         row = []
