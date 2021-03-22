@@ -25,3 +25,20 @@ class MultiNormal:
         self.mean = np.mean(data, axis=1, keepdims=True)
         X = data - self.mean
         self.cov = np.dot(X, X.T) / (n - 1)
+
+    def pdf(self, x):
+        """
+        calcule pdf
+        :param x:
+        """
+        d = self.cov.shape[0]
+        if type(x) != np.ndarray:
+            raise TypeError('x must be a numpy.ndarray')
+
+        if (len(x.shape) != 2) or (x.shape[1] != 1) or (x.shape[0] != d):
+            raise ValueError("x must have the shape ({}, 1)".format(d))
+        Xmax = x - self.mean
+        M = np.sqrt((2 * np.pi) ** d * np.linalg.det(self.cov))
+        K = np.exp(-(np.linalg.solve(self.cov, Xmax).T.dot(Xmax)) * 0.5)
+        pdf_retour = (1 / (M) * K)
+        return pdf_retour[0][0]
