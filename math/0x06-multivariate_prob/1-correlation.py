@@ -9,7 +9,7 @@ def correlation(C):
     desc
     :param C:
     """
-    if C != np.ndarray:
+    if type(C) != np.ndarray:
         raise TypeError('C must be a numpy.ndarray')
 
     if len(C.shape) != 2:
