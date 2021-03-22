@@ -52,23 +52,17 @@ def determinant(matrix):
     return determ
 
 
-def new_sub_mtr(c, seb, matrix):
-    """
-
-    :param i:
-    :param k:
-    :param matrix:
-    :return:
-    """
-    mini_mat = []
-    for r in range(len(matrix)):
-        case = []
-        for co in range(len(matrix)):
-            if seb != r and c != co:
-                case.append(matrix[r][co])
-        if len(case) > 0:
-            mini_mat.append(case)
-    return (mini_mat)
+def new_sub_mat(matrix, i, j):
+    """const mat determinant"""
+    det_matrice = []
+    for k in range(len(matrix[0])):
+        ligne = []
+        for ze in range(len(matrix[0])):
+            if i != k and j != ze:
+                ligne.append(matrix[k][ze])
+        if len(ligne) > 0:
+            det_matrice.append(ligne)
+    return(det_matrice)
 
 
 def minor(matrix):
@@ -90,11 +84,11 @@ def minor(matrix):
             raise TypeError("matrix must be a list of lists")
         elif len(i) != len(matrix):
             raise ValueError("matrix must be a non-empty square matrix")
-
     retour = []
-    for seb in range(len(matrix)):
-        case = []
-        for c in range(len(matrix[0])):
-            case.append(determinant(new_sub_mtr(c, seb, matrix)))
-        retour.append(case)
-    return minor
+    for i in range(len(matrix)):
+        row = []
+        for j in range(len(matrix[0])):
+            deter = determinant(new_sub_mat(matrix, i, j))
+            row.append(deter)
+        retour.append(row)
+    return retour
