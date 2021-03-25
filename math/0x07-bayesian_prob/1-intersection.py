@@ -33,7 +33,7 @@ def intersection(x, n, P, Pr):
             raise ValueError('All values in P must be in the range [0, 1]')
     for item in Pr:
         if item > 1 or item < 0:
-            raise ValueError('All values in P must be in the range [0, 1]')
+            raise ValueError('All values in Pr must be in the range [0, 1]')
 
     test = np.sum(Pr)
     if not np.isclose(test, 1):
