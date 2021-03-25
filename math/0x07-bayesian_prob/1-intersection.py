@@ -35,7 +35,8 @@ def intersection(x, n, P, Pr):
         if item > 1 or item < 0:
             raise ValueError('All values in P must be in the range [0, 1]')
 
-    if (not np.isclose(np.sum(Pr), 1)):
+    test = np.sum(Pr)
+    if not np.isclose(test, 1):
         raise ValueError("Pr must sum to 1")
 
     fact = np.math.factorial(n) / (np.math.factorial(x)
