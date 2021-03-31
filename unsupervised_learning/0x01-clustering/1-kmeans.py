@@ -12,7 +12,7 @@ def kmeans(X, k, iterations=1000):
     :param k:
     :param iterations:
     """
-    if type(X) != np.array or len(X) != 2:
+    if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None
     if type(k) is not int or k <= 0:
         return None, None
@@ -35,7 +35,6 @@ def kmeans(X, k, iterations=1000):
         clss = np.argmin(dsit, axis=0)
         if np.all(C == ancien):
             return C, clss
-
     return C, clss
 
 
