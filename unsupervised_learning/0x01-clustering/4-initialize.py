@@ -22,7 +22,7 @@ def initialize(X, k):
     n, d = X.shape
     pi = np.tile(1/k, (k))
     c, clss = kmeans(X, k)
-    S = np.tile(np.identity(d), (k, d))
+    S = np.tile(np.identity(d), (k))
     S = S.reshape(k, d, d)
 
     return pi, c, S
