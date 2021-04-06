@@ -19,7 +19,7 @@ def regular(P):
 
     s = np.matmul(s, P)
     for i in range(n):
-        if np.any(P[i]) <= 0:
+        if np.all(P[i]) <= 0:
             return None
     while(boul):
         s_prec = s
