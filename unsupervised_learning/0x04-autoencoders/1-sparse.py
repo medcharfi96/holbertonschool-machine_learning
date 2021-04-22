@@ -2,7 +2,7 @@
 """ task 1 """
 
 
-import tensorflow._api.v1.keras as keras
+import tensorflow.keras as keras
 
 
 def sparse(input_dims, hidden_layers, latent_dims, lambtha):
