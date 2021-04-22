@@ -14,13 +14,13 @@ def autoencoder(input_dims, filters, latent_dims):
     inp_enco = keras.Input(shape=input_dims)
 
     enco = keras.layers.Conv2D(filters=filters[0],
-                               kernel_size=(3, 3), padding='same',
+                               kernel_size=3, padding='same',
                                activation='relu')(inp_enco)
     enco = keras.layers.MaxPool2D(pool_size=(2, 2), padding='same')(enco)
 
     for i in range(1, len(filters)):
         enco = keras.layers.Conv2D(filters=filters[i],
-                                   kernel_size=(3, 3),
+                                   kernel_size=3,
                                    padding='same',
                                    activation='relu')(enco)
         enco = keras.layers.MaxPool2D(pool_size=(2, 2),
@@ -32,20 +32,20 @@ def autoencoder(input_dims, filters, latent_dims):
     inpt_deco = keras.Input(shape=latent_dims)
 
     deco = keras.layers.Conv2D(filters=filters[-1],
-                               kernel_size=(3, 3),
+                               kernel_size=3,
                                padding='same',
                                activation='relu')(inpt_deco)
-    deco = keras.layers.UpSampling2D(2)(deco)
+    deco = keras.layers.UpSampling2D((2, 2))(deco)
 
     for i in range(len(filters)-2, 0, -1):
         deco = keras.layers.Conv2D(filters=filters[i],
                                    kernel_size=3,
                                    padding='same',
                                    activation='relu')(deco)
-        deco = keras.layers.UpSampling2D(2)(deco)
+        deco = keras.layers.UpSampling2D((2, 2))(deco)
 
     deco = keras.layers.Conv2D(filters=filters[0],
-                               kernel_size=(3, 3),
+                               kernel_size=3,
                                padding='valid',
                                activation='relu')(deco)
     deco = keras.layers.UpSampling2D((2, 2))(deco)
@@ -57,14 +57,12 @@ def autoencoder(input_dims, filters, latent_dims):
 
     decoder = keras.Model(inputs=inpt_deco, outputs=output)
 
-    encoder.summary()
-    decoder.summary()
     auto = keras.Input(shape=input_dims)
-    output_encoder = encoder(inp_enco)
+    output_encoder = encoder(auto)
     output_decoder = decoder(output_encoder)
 
     # Autoencoder
-    autoencodeer = keras.models.Model(inputs=auto, outputs=output_decoder)
+    autoencodeer = keras.Model(inputs=output_encoder, outputs=output_decoder)
     autoencoder().compile(optimizer='Adam',
                           loss='binary_crossentropy')
 
