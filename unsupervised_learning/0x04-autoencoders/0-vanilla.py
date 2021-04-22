@@ -2,7 +2,7 @@
 """ task 0 """
 
 
-import tensorflow._api.v1.keras as keras
+import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
