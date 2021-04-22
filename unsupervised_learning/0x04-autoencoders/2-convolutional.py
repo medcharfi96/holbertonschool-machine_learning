@@ -51,17 +51,20 @@ def autoencoder(input_dims, filters, latent_dims):
     deco = keras.layers.UpSampling2D((2, 2))(deco)
 
     output = keras.layers.Conv2D(filters=input_dims[-1],
-                                 kernel_size=2,
+                                 kernel_size=3,
                                  padding='same',
                                  activation='sigmoid')(deco)
 
     decoder = keras.Model(inputs=inpt_deco, outputs=output)
 
+    encoder.summary()
+    decoder.summary()
+    auto = keras.Input(shape=input_dims)
     output_encoder = encoder(inp_enco)
     output_decoder = decoder(output_encoder)
 
     # Autoencoder
-    autoencodeer = keras.models.Model(inputs=inp_enco, outputs=output_decoder)
+    autoencodeer = keras.models.Model(inputs=auto, outputs=output_decoder)
     autoencoder().compile(optimizer='Adam',
                           loss='binary_crossentropy')
 
