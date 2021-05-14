@@ -27,7 +27,7 @@ def uni_bleu(references, sentence):
 
     flat_sum = sum(flat.values())
     idx_proche = np.argmin([abs(len(x) - out_len) for x in references])
-    ##idx_proche = np.argmin(np.abs(referance_l - out_len))
+    # idx_proche = np.argmin(np.abs(referance_l - out_len))
     closest_len_refer = len(references[idx_proche])
 
     if out_len > closest_len_refer:
