@@ -35,7 +35,7 @@ def ngram_bleu(references, sentence, n):
     idx_proche = np.argmin([abs(len(x) - N_out_sent) for x in references])
     idx_proche_l = len(references[idx_proche])
 
-    if N_out_sent <= idx_proche_l:
+    if N_out_sent < idx_proche_l:
         bp = np.exp(1 - (idx_proche_l / len(sentence)))
     else:
         bp = 1
