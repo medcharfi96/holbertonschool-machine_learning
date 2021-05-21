@@ -39,7 +39,7 @@ class EncoderBlock(tf.keras.layers.Layer):
         attn_output, _ = self.mha(x, x, x, mask)
         attn_output = self.dropout1(attn_output, training=training)
         out1 = self.layernorm1(x + attn_output)
-        ffn_output = self.dense_hidden(out1)
+        ffn_output = out1
 
         ffn_output = self.dropout2(ffn_output, training=training)
         out2 = self.layernorm2(out1 + ffn_output)
