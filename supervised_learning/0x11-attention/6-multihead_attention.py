@@ -25,7 +25,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         self.Wv = tf.keras.layers.Dense(dm)
         self.linear = tf.keras.layers.Dense(dm)
 
-    def splitHeads(self, m, batch):
+    def splitHeads(self, rt, batch):
         """
         deviser le model
         :param m:
