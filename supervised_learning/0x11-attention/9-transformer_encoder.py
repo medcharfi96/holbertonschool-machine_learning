@@ -23,7 +23,7 @@ class Encoder(tf.keras.layers.Layer):
         :param drop_rate:
         """
 
-        super().__init__()
+        super(Encoder, self).__init__()
         self.N = N
         self.dm = dm
         self.embedding = tf.keras.layers.Embedding(input_vocab, dm)
