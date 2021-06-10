@@ -13,16 +13,15 @@ def initialize(X, k):
     :param k:
     """
 
-    if type(X) != np.ndarray or len(X.shape) != 2:
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         return None, None, None
 
     if type(k) != int or k <= 0:
         return None, None, None
 
     n, d = X.shape
-    pi = np.tile(1/k, (k))
-    c, clss = kmeans(X, k)
-    S = np.tile(np.identity(d), (k))
-    S = S.reshape(k, d, d)
+    pi = np.tile(1 / k, (k,))
+    m, _ = kmeans(X, k)
+    S = np.tile(np.identity(d), (k, 1, 1))
 
-    return pi, c, S
+    return pi, m, S
