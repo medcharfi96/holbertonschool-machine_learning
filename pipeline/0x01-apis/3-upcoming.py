@@ -17,11 +17,9 @@ if __name__ == '__main__':
 
     F_tmp_LOC = data["date_local"]
 
-    # <rocket name>
     ADRESS2 = "https://api.spacexdata.com/v4/rockets/" + data["rocket"]
     F_NOM_ROCK = requests.get(ADRESS2).json()['name']
 
-    # <launchpad name> (<launchpad locality>)
     ADRESS3 = "https://api.spacexdata.com/v4/launchpads/" +\
         data["launchpad"]
     REQUTTE = requests.get(ADRESS3).json()
