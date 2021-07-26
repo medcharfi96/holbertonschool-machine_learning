@@ -13,8 +13,8 @@ def availableShips(passengerCount):
     TAB = []
 
     try:
-        ret = requests.get(ADRESS)
         while ADRESS is not None:
+            ret = requests.get(ADRESS)
             ship_gen = ret.json()['results']
             for SH in ship_gen:
                 psng = SH['passengers']
