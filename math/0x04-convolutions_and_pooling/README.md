@@ -8,23 +8,23 @@
 
 ![alt text](https://vernlium.github.io/2018/10/15/coursera-deeplearning-ai-c4-week1/mulit_channel_convolution.gif)
   
-## Why to use Pooling Layers? 
+## 3. Why to use Pooling Layers? 
 Pooling layers are used to reduce the dimensions of the feature maps. Thus, it reduces the number of parameters to learn and the amount of computation performed in the network.
 Pooling layer is used to reduce the spatial volume of input image after convolution. It is used between two convolution layer.
 
 ![alt text](https://vernlium.github.io/2018/10/15/coursera-deeplearning-ai-c4-week1/maxpool_animation.gif)
 
-## What i learned in this chapter
 
-- What is a convolution?
-- What is max pooling? average pooling?
-- What is a kernel/filter?
-- What is padding?
-- What is “same” padding? “valid” padding?
-- What is a stride?
-- What are channels?
-- How to perform a convolution over an image
-- How to perform max/average pooling over an image
+## 4. What i learned  in this chapter
 
+ - What is a convolution?
+ - What is max pooling? average pooling?
+ - What is a kernel/filter?
+ - What is padding?
+ - What is “same” padding? “valid” padding?
+ - What is a stride?
+ - What are channels?
+ - How to perform a convolution over an image
+ - How to perform max/average pooling over an image
 
 ### Done by : Mouhamed Charfi
