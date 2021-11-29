@@ -1,5 +1,5 @@
 # 0x01-apis
-## holberton school  task 
+## What i learned from this chapter
 
 -    How to use the Python package requests
 -    How to make HTTP GET request
@@ -9,4 +9,5 @@
 -    How to manipulate data from an external service
 
 
-#### Done by : Mouhamed Charfi
+## Author
+* **Mouhamed Charfi** - [medcharfi96](https://github.com/medcharfi96)
