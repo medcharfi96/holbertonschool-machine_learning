@@ -1,5 +1,5 @@
 # 0x06-multivariate_prob
-## Holberton school	task
+## What  i learned from  this chapter
 - Who is Carl Friedrich Gauss?
 - What is a joint/multivariate distribution?
 - What is a covariance?
