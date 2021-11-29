@@ -20,4 +20,4 @@ Classical machine learning is often categorized by how an algorithm learns to be
 
 
 ## Author
-* **medcharfi96** - [medcharfi96](https://github.com/medcharfi96)
+* **Mouhamed Charfi** - [medcharfi96](https://github.com/medcharfi96)
