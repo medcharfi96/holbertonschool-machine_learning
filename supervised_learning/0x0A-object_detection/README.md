@@ -1,5 +1,5 @@
 # 0x0A.Object detection
-## Holberton school task
+## What i learned from this chapter
 - What is OpenCV and how do you use it?
 - What is object detection?
 - What is the Sliding Windows algorithm?
@@ -10,4 +10,5 @@
 - What are anchor boxes?
 - What is mAP and how do you calculate it?Qu'est-ce que mAP et comment le calculez-vous? 
 
-### Done By: Mouhamed Charfi
+## Author
+* **Mouhamed Charfi** - [medcharfi96](https://github.com/medcharfi96)
